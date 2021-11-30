@@ -19,21 +19,30 @@ def to_minutes_2(hours, minutes=0):
     if hours >= 0 and minutes >= 0:
         value = int(hours) * 60 + int(minutes)
     else:
-        value = "unexpected"
-    return value
+        raise ValueError("Attention: les entrées sont positives ou nulles")
+
+        return value
 
 
 # version ternaire
 def to_minutes_3(hours, minutes=0):
-    value = int(hours) * 60 + int(minutes) if hours >= 0 and minutes >= 0 else " 😱 unexpected"
+    value = int(hours) * 60 + int(minutes) if hours >= 0 and minutes >= 0 else "😱 unexpected"
     return value
 
-"""
-print(to_minutes(1, minutes=30))
-print(to_minutes(2))
-print(to_minutes("2"))
-print(to_minutes("2", minutes="45"))
 
-print(to_minutes_2(-230))
-print(to_minutes_3(-230))
-"""
+def to_minutes_(hours, minutes=0):
+    hours = int(hours)
+    minutes = int(minutes)
+    if hours < 0 or minutes < 0:
+        raise ValueError("value should not be negative")
+
+    return hours * 60 + minutes
+
+#  ne sera pas executer lorsque to_minutes_ sera interpreté depuis le module my_evening
+if __name__ == "__main__":
+    print(to_minutes(1, minutes=30))
+    print(to_minutes(2))
+    print(to_minutes("2"))
+    print(to_minutes("2", minutes="45"))
+    print(to_minutes_2(-230))
+    print(to_minutes_3(-230))
